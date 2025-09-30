@@ -5,10 +5,10 @@ using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
 using System.Threading.Tasks;
-using TreasuryServiceStarter;
+using ServiceManagerSettings;
 using Timer = System.Timers.Timer;
 
-public class ServiceMonitorApp
+public class ServiceManagerApp
 {
     private static string? serviceName;
     private static Timer? serviceTimer;
@@ -28,7 +28,7 @@ public class ServiceMonitorApp
         configuration.GetSection("Settings").Bind(appSettings);
 
         Directory.CreateDirectory(appSettings.LogFolderPath);
-        string logFilePath = Path.Combine(appSettings.LogFolderPath, "service-monitor-.txt");
+        string logFilePath = Path.Combine(appSettings.LogFolderPath, "service-monitor-.log");
 
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
